@@ -1,18 +1,20 @@
-"""class Flashcard: 
+import json
+
+flashcardsDict = {}
+
+inputQ = input("Input the question: ")
+inputA = input("Input the answer: ")
+
+class Flashcard: 
     def __init__(self, question, answer):
         self.question = question
         self.answer = answer
+        
+card =  Flashcard(inputQ, inputA)
+flashcardsDict[card.question] = card.answer
 
 
-chem = Flashcard("What is the only metal that is a liquid?", "Mercury")
-print(chem.question)"""
+with open('Flashcards.json', 'w') as json_file:
+    json.dump(flashcardsDict, json_file, indent=4)
+print(flashcardsDict)
 
-class Person: 
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
-
-p1 = Person("John", 36)
-
-print(p1.name)
-print(p1.age)
