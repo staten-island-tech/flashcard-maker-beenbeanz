@@ -17,4 +17,3 @@ flashcardsDict[card.question] = card.answer
 with open('Flashcards.json', 'w') as json_file:
     json.dump(flashcardsDict, json_file, indent=4)
 print(flashcardsDict)
-
