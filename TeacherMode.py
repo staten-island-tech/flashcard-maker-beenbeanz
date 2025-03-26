@@ -3,10 +3,17 @@ import json
 flashcardsDict = {}
 
 class Flashcard: 
-    def __init__(self, question, answer):
+    def __init__(self, question, answer, image):
         self.question = question
         self.answer = answer
+        self.image = image
+        
+    def displayQuestion(self):
+        return self.question
 
+    def displayAnswerAndImage(self):
+        return f"{self.answer} {self.image}"
+    
 inputQ = input("Input the question: ")
 inputA = input("Input the answer: ")
 
