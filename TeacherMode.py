@@ -1,7 +1,5 @@
 import json
 
-flashcardsDict = {}
-
 class Flashcard: 
     def __init__(self, question, answer, image):
         self.question = question
@@ -13,13 +11,19 @@ class Flashcard:
 
     def displayAnswerAndImage(self):
         return f"{self.answer} {self.image}"
-    
-inputQ = input("Input the question: ")
-inputA = input("Input the answer: ")
 
-card =  Flashcard(inputQ, inputA)
-flashcardsDict[card.question] = card.answer
+newCardQuestion = input("Input the question: ")
+newCardAnswer = input("Input the answer: ")
+newCardImage = input("Input  file: ")
+newCard = Flashcard(newCardQuestion, newCardAnswer, newCardImage)
 
-with open('Flashcards.json', 'w') as json_file:
-    json.dump(flashcardsDict, json_file, indent=4)
-print(flashcardsDict)
+try:
+    with open("FlashCards.json", "r") as file:
+        cardsData = json.load(file)
+except FileNotFoundError:
+    cardsData = []
+
+cardsData.append(newCard.__dict__)
+
+with open('Flashcards.json', 'w') as file:
+    json.dump(cardsData, file, indent=4)
