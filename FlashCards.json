@@ -2,7 +2,7 @@
     {
         "question": "What is 1+1?",
         "answer": "2",
-        "image": "number.png"
+        "image": "number.jpg"
     },
     {
         "question": "What is 2+2?",
@@ -12,6 +12,6 @@
     {
         "question": "What is germanium?",
         "answer": "An element",
-        "image": "img.png"
+        "image": "img.jpg"
     }
 ]
