@@ -1,7 +1,8 @@
 import json
+from PIL import Image
 
 class Flashcard: 
-    def __init__(self, question, answer, image):
+    def __init__(self, question, answer, image=None):
         self.question = question
         self.answer = answer
         self.image = image
@@ -11,6 +12,16 @@ class Flashcard:
 
     def displayAnswerAndImage(self):
         return f"{self.answer} {self.image}"
+
+    def displayImage(self):
+        if self.image:
+            try:
+                img = Image.open(self.image)
+                img.show()
+            except FileNotFoundError:
+                print("Error: Image file not found.")
+        else:
+            print("No image provided.")
 
 newCardQuestion = input("Input the question: ")
 newCardAnswer = input("Input the answer: ")
