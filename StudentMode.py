@@ -6,5 +6,5 @@ try:
 except FileNotFoundError:
     cards_data = []
 
-for card in cards_data:
-    print(cards_data[0]["question"])
+for i in range(len(cards_data)):
+    print(cards_data[i]["image"])
