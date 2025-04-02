@@ -2,7 +2,7 @@ import json
 from PIL import Image
 
 class Flashcard: 
-    def __init__(self, question, answer, image=None):
+    def __init__(self, question, answer, image):
         self.question = question
         self.answer = answer
         self.image = image
@@ -23,18 +23,44 @@ class Flashcard:
         else:
             print("No image provided.")
 
-newCardQuestion = input("Input the question: ")
-newCardAnswer = input("Input the answer: ")
-newCardImage = input("Input  file: ")
-newCard = Flashcard(newCardQuestion, newCardAnswer, newCardImage)
+teacherOrStudent = input("Teacher or Student mode? ")
+if teacherOrStudent == "Teacher":
+    newCardQuestion = input("Input the question: ")
+    newCardAnswer = input("Input the answer: ")
+    newCardImage = input("Input  file: ")
+    newCard = Flashcard(newCardQuestion, newCardAnswer, newCardImage)
 
-try:
-    with open("FlashCards.json", "r") as file:
-        cardsData = json.load(file)
-except FileNotFoundError:
-    cardsData = []
+    try:
+        with open("FlashCards.json", "r") as file:
+            cardsData = json.load(file)
+    except FileNotFoundError:
+        cardsData = []
 
-cardsData.append(newCard.__dict__)
+    cardsData.append(newCard.__dict__)
 
-with open('Flashcards.json', 'w') as file:
-    json.dump(cardsData, file, indent=4)
+    with open('Flashcards.json', 'w') as file:
+        json.dump(cardsData, file, indent=4)
+elif teacherOrStudent == "Student":
+    try:
+        with open("Flashcards.json", "r") as file:
+            cards_data = json.load(file)
+    except FileNotFoundError:
+        cards_data = []
+
+    score = 0
+    streak = 0
+    for i in range(len(cards_data)):
+        print(cards_data[i]["question"])
+        ans = input('Your answer:')
+        if(ans == cards_data[i]["answer"]):
+            print("You're correct!")
+            score += 1
+            streak += 1
+            if(streak % 3==0):
+                print("Bonus activated. +3 points.")
+                score+=3
+        else:
+            print("That is so wrong are you stupid.")
+            streak = 0
+    print(f"Your final score is {score}")
+else: print("SELECT A VALID MODE YOU BOZO")
